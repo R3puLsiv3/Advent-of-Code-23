@@ -61,9 +61,7 @@ def main():
     for block in blocks:
         disintegrate = True
         for parent in block.above:
-            below = list(parent.below)
-            below.remove(block)
-            if not below:
+            if len(parent.below) == 1:
                 disintegrate = False
                 break
         if disintegrate:

@@ -65,7 +65,6 @@ def main():
 
     result = 0
     for i in range(len(blocks)):
-        print(i)
         # The entire blocks structure needs to be reset, deepcopy is extremely slow. In an actual application you should
         # use json dumps or cPickle or mark the nodes.
         new_blocks = copy.deepcopy(blocks)
