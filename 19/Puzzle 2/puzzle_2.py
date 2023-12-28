@@ -77,7 +77,7 @@ def main():
 
     start_intervals = {"x": [1, 4000], "m": [1, 4000], "a": [1, 4000], "s": [1, 4000]}
     start_workflow = "in"
-    result = find_combinations(start_intervals,start_workflow, workflows)
+    result = find_combinations(start_intervals, start_workflow, workflows)
 
     print(result)
 

@@ -7,7 +7,7 @@ def main():
     # in the up/down/left/right direction. Input is designed so that no new quadrant even gets reached in 131 steps
     # other than these 4. Now I checked every 131st result to find a pattern. By looking at the distribution of hits,
     # and a lot of trial and error in a calculator, I found that the formula
-    # i^2*7262 + i^2*7232 + i*197-(i-1)
+    # i^2*7262 + i^2*7232 + i*197 - (i-1)
     # yields the correct result for all i that I checked. Luckily this pattern holds.
     # 26501365 div 131 is 202300, so I calculate the value for i=202300. Let's call this value res.
     # Since 26501365 mod 131 is 65 I then checked for patterns in every (131*i+65). result up to i = 4.
@@ -15,7 +15,7 @@ def main():
     # res + i*7232*2 + 3725 + i*16 + (i-1)
     # calculates the correct number, where 3725 is the number of tiles reached after 65 steps.
     # The whole formula can thus be reduced to
-    # (i**2)*7262 + (i**2 + 2*i)*7232 + i*213 + 3725
+    # (i^2)*7262 + (i^2 + 2*i)*7232 + i*213 + 3725
     # where the solution to the puzzle is found for i=202300.
 
     with open("input.txt") as f:
