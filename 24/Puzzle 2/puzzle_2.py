@@ -12,8 +12,6 @@ class Hailstone:
 
 
 def main():
-    # This was solved by using an external LGS solver. The sympy LGS solver somehow doesn't consider necessary
-    # boundaries for variables and only tries to find a general solution, which fails.
     with open("input.txt") as f:
         data = f.read()
 
@@ -29,25 +27,18 @@ def main():
         hailstone = Hailstone(*(pos + delta))
         hailstones.append(hailstone)
 
-    sym = sy.symbols("t_0 t_1 t_2", real=True)
-    matrix = sy.Matrix()
-    b = sy.Matrix()
+    x, y, z, a, b, c = sy.symbols("x, y, z, a, b, c", int=True)
+    sym = sy.symbols("s, t, u", int=True)
+
+    terms = []
     for i, hailstone in enumerate(hailstones[:3]):
         t = sym[i]
-        to_append = sy.Matrix([[1, 0, 0, t, 0, 0],
-                              [0, 1, 0, 0, t, 0],
-                              [0, 0, 1, 0, 0, t]])
-        matrix = matrix.row_insert(0, to_append)
+        terms += [x + t*a - hailstone.x_pos - t*hailstone.x_delta, y + t*b - hailstone.y_pos - t*hailstone.y_delta,
+                  z + t*c - hailstone.z_pos - t*hailstone.z_delta]
 
-        to_append = sy.Matrix([[hailstone.x_pos + t*hailstone.x_delta],
-                              [hailstone.y_pos + t*hailstone.y_delta],
-                              [hailstone.z_pos + t*hailstone.z_delta]])
+    result = list(sy.nonlinsolve(terms, [x, y, z, a, b, c, sym[0], sym[1], sym[2]]))
 
-        b = b.row_insert(0, to_append)
-
-    result = list(sy.linsolve((matrix, b)))
-
-    print(result)
+    print(result[0][0] + result[0][1] + result[0][2])
 
 
 if __name__ == '__main__':
