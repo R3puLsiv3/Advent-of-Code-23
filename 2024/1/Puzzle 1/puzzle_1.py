@@ -1,5 +1,3 @@
-import operator
-
 
 def main():
     with open("input.txt") as f:
