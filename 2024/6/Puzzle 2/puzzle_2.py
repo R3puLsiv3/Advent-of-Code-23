@@ -71,7 +71,8 @@ def main():
         pos_guard, direction = move_guard(lines, pos_guard, direction)
 
     # Very brute force implementation that places an obstacle at every tile on the path of the guard and then
-    # checks if a cycle occurs when the guard is simulated.
+    # checks if a cycle occurs when the guard is simulated. A faster method would be to create a graph of all obstacles
+    # and thereby ignore all the steps inbetween.
     possible_obstacles = 0
     for tile_pos in path:
         original_tile = build_obstacle(lines, tile_pos)
