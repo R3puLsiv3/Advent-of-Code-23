@@ -28,8 +28,6 @@ def main():
     right_top = [position for position in new_positions if position[0] > split_horizontal and position[1] < split_vertical]
     right_bottom = [position for position in new_positions if position[0] > split_horizontal and position[1] > split_vertical]
 
-    print(len(left_top), len(right_top))
-    print(len(left_bottom), len(right_bottom))
     print(len(left_top) * len(left_bottom) * len(right_top) * len(right_bottom))
 
 if __name__ == '__main__':
